@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+DATA=`cat ${1:-/dev/stdin} | jq -r ".unixtime, .emeters[].voltage, .emeters[].power, .emeters[].total"`
+
+IFS=$'\r\n'
+RECORDS=($DATA)
+
+TIMESTAMP=${RECORDS[0]}
+DATE=`TZ=Etc/UTC date -Iseconds -r $TIMESTAMP | sed 's/+00:00//'`
+
+VOLTS1=${RECORDS[1]}
+VOLTS2=${RECORDS[2]}
+VOLTS3=${RECORDS[3]}
+POWER1=${RECORDS[4]}
+POWER2=${RECORDS[5]}
+POWER3=${RECORDS[6]}
+TOTAL1=${RECORDS[7]}
+TOTAL2=${RECORDS[8]}
+TOTAL3=${RECORDS[9]}
+
+echo $DATE,$VOLTS1,$POWER1,$TOTAL1,$VOLTS2,$POWER2,$TOTAL2,$VOLTS3,$POWER3,$TOTAL3
+

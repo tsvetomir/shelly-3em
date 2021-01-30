@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+URL="http://192.168.20.110/status"
+DIR=$(dirname "$0")
+DATA_DIR="$DIR/data"
+
+for i in {0..5}; do
+    (curl -s "$URL" | $DIR/transform >> $DATA_DIR/data.csv)&
+    sleep 10
+done
+

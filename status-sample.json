@@ -1,0 +1,78 @@
+{
+  "actions_stats": {
+    "skipped": 0
+  },
+  "cfg_changed_cnt": 0,
+  "cloud": {
+    "connected": true,
+    "enabled": true
+  },
+  "emeters": [
+    {
+      "current": 0.44,
+      "is_valid": true,
+      "pf": 0.07,
+      "power": 6.62,
+      "total": 18407.1,
+      "total_returned": 0.1,
+      "voltage": 229.6
+    },
+    {
+      "current": 1.89,
+      "is_valid": true,
+      "pf": 0.89,
+      "power": 385.9,
+      "total": 48174,
+      "total_returned": 0,
+      "voltage": 229.99
+    },
+    {
+      "current": 0.31,
+      "is_valid": true,
+      "pf": 0.33,
+      "power": 22.1,
+      "total": 6864.5,
+      "total_returned": 0,
+      "voltage": 217.67
+    }
+  ],
+  "fs_free": 151102,
+  "fs_mounted": true,
+  "fs_size": 233681,
+  "has_update": false,
+  "mac": "84CCA8AD96CE",
+  "mqtt": {
+    "connected": false
+  },
+  "ram_free": 31056,
+  "ram_total": 49296,
+  "relays": [
+    {
+      "has_timer": false,
+      "is_valid": true,
+      "ison": false,
+      "overpower": false,
+      "source": "input",
+      "timer_duration": 0,
+      "timer_remaining": 0,
+      "timer_started": 0
+    }
+  ],
+  "serial": 31415,
+  "time": "13:16",
+  "unixtime": 1608297419,
+  "update": {
+    "beta_version": "20201202-142834/v1.9.3-rc3@50c6ab57",
+    "has_update": false,
+    "new_version": "20201124-092854/v1.9.0@57ac4ad8",
+    "old_version": "20201124-092854/v1.9.0@57ac4ad8",
+    "status": "idle"
+  },
+  "uptime": 245848,
+  "wifi_sta": {
+    "connected": true,
+    "ip": "192.168.20.110",
+    "rssi": -50,
+    "ssid": "portal-iot"
+  }
+}
