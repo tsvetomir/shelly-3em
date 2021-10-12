@@ -1,24 +1,43 @@
-This is a collection of scripts to collect data from the [Shelly EM3](https://shelly.cloud/products/shelly-3em-smart-home-automation-energy-meter/) energy meter.
+# Shelly 3EM – Dashboard
 
-## Data Collection
+This is a sample set-up to collect data from the [Shelly 3EM](https://shelly.cloud/products/shelly-3em-smart-home-automation-energy-meter/) energy meter.
 
-The energy meter has `/status` end-point that returns a snapshot of the current and historical power usage. See `status-sample.json`.
+The data is plotted on a dashboard using Grafana:
 
-A subset of the data is collected as a CSV file by the `extract` and `transform` scripts.
-This includes the voltage (V), power usage (W) and total consumed power (Wh) for phases L1-L3.
-
-I use a simple Gnuplot script to create graphs like these:
-![Sample graph](./plots/plot-20210123-20210130.png)
+![Dashboard sample](dashboard.png)
 
 ## Prerequisites
 
-The scripts use [jq](https://stedolan.github.io/jq/) and [Gnuplot](http://gnuplot.info/).
+* InfluxDB 1.8
+* Grafana 8.1
+* Telegraf 1.2
 
-## Crontab Entry
+## Data Collection
 
-Sample crontab entry to run the collection script every minute:
+The energy meter has `/status` end-point that returns [a snapshot](/tsvetomir/shelly-em3/blob/master/status-sample.json) of the current and total power usage.
 
-```crontab
-# minute    hour    mday    month   wday    command
-  */1       *       *       *       *       /shelly-em3/extract
-```
+The device is polled every 10 seconds by a [Telegraf](https://docs.influxdata.com/telegraf/v1.20/) agent. It collects the fields related to electricity usage and sends them to the database:
+
+* Voltage.
+* Momentary power usage.
+* Total consumed power.
+
+The Telegraf service configuration is in [`telegraf/`](/tsvetomir/shelly-em3/tree/master/telegraf):
+
+## Database
+
+The [InfluxDB](https://docs.influxdata.com/influxdb/v1.8/) database is configured to retain high-resolution data for 1 year.
+
+A subset of the data is down-sampled to 1 hour resolution and retained for 2 years:
+* Minimum voltage.
+* Maximum momentary power.
+* Total power usage.
+
+The script to set up the database and the continuous queries is in [`influxdb/`](/tsvetomir/shelly-em3/tree/master/influxdb):
+
+## Dashboard
+
+Two [Grafana](https://grafana.com/docs/grafana/latest/) dashboards show real-time and historical data.
+
+The dashboards can be imported from [`grafana/`](https://github.com/tsvetomir/shelly-em3/tree/master/grafana).
+

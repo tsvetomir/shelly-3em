@@ -40,7 +40,7 @@
   "fs_mounted": true,
   "fs_size": 233681,
   "has_update": false,
-  "mac": "84CCA8AD96CE",
+  "mac": "XXXXXX",
   "mqtt": {
     "connected": false
   },
@@ -73,6 +73,6 @@
     "connected": true,
     "ip": "192.168.20.110",
     "rssi": -50,
-    "ssid": "portal-iot"
+    "ssid": "XXXXXX"
   }
 }
