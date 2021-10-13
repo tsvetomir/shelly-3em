@@ -14,7 +14,7 @@ The data is plotted on a dashboard using Grafana:
 
 ## Data Collection
 
-The energy meter has `/status` end-point that returns [a snapshot](/tsvetomir/shelly-em3/blob/master/status-sample.json) of the current and total power usage.
+The energy meter has `/status` end-point that returns [a snapshot](status-sample.json) of the current and total power usage.
 
 The device is polled every 10 seconds by a [Telegraf](https://docs.influxdata.com/telegraf/v1.20/) agent. It collects the fields related to electricity usage and sends them to the database:
 
@@ -22,7 +22,7 @@ The device is polled every 10 seconds by a [Telegraf](https://docs.influxdata.co
 * Momentary power usage.
 * Total consumed power.
 
-The Telegraf service configuration is in [`telegraf/`](/tsvetomir/shelly-em3/tree/master/telegraf):
+The Telegraf service configuration is in [`telegraf/`](telegraf):
 
 ## Database
 
@@ -33,11 +33,11 @@ A subset of the data is down-sampled to 1 hour resolution and retained for 2 yea
 * Maximum momentary power.
 * Total power usage.
 
-The script to set up the database and the continuous queries is in [`influxdb/`](/tsvetomir/shelly-em3/tree/master/influxdb):
+The script to set up the database and the continuous queries is in [`influxdb/`](influxdb):
 
 ## Dashboard
 
 Two [Grafana](https://grafana.com/docs/grafana/latest/) dashboards show real-time and historical data.
 
-The dashboards can be imported from [`grafana/`](https://github.com/tsvetomir/shelly-em3/tree/master/grafana).
+The dashboards can be imported from [`grafana/`](grafana).
 
